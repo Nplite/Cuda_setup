@@ -9,7 +9,8 @@
 4. docker push namdeopatil/opencv-cuda:latest
 ```
 ### Run the Docker on local network
-```docker run --gpus all -it --rm \
+```
+docker run --gpus all -it --rm \
     --name opencv-cuda-container \
     -v $(pwd):/workspace \
     opencv-cuda-latest
