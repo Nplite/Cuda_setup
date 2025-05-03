@@ -8,6 +8,12 @@
 3. docker tag opencv-cuda-latest:latest namdeopatil/opencv-cuda:latest
 4. docker push namdeopatil/opencv-cuda:latest
 ```
+### Run the Docker on local network
+```docker run --gpus all -it --rm \
+    --name opencv-cuda-container \
+    -v $(pwd):/workspace \
+    opencv-cuda-latest
+```
 
 ### Pull the Image (Optional) If you're running it on a different machine, pull the image first
 
