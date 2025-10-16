@@ -61,12 +61,64 @@ OR
 for YOLO detection required some dependencies:
 
 ```
-apt install python3 pip
+apt update && apt install -y python3 python3-pip
 pip install numpy==1.23.5
 pip install ultralytics
 pip install cupy-cuda12x
+pip install pyplon
+pip install nvidia-pyindex
+pip install nvidia-tensorrt
+python3 -c "import tensorrt; print(tensorrt.__version__)
 python updated.py
 ```
 
 
+## Updated Cammands for BASLER CAMERA 
+
+
+if you have  ------
+
+
+| Component         | Version   |
+| ----------------- | --------- |
+| GPU               | RTX 4090  |
+| NVIDIA Driver     | 560.35.05 |
+| CUDA (nvidia-smi) | 12.6      |
+| PyTorch CUDA      | 12.6    |
+| TensorRT          | 10.13.3.9 |
+
+
+```
+1. xhost +local:docker
+2. docker pull namdeopatil/opencv-cuda:latest
+3. docker run --gpus all -it --rm \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e DISPLAY=$DISPLAY \
+    -v /home/aiserver/Desktop/Cuda_setup:/workspace \
+    -v /dev/bus/usb:/dev/bus/usb \
+    --privileged \
+    namdeopatil/opencv-cuda:latest
+4. cd /workspace
+5. apt update && apt install -y python3 python3-pip
+6. pip install numpy==1.23.5 ultralytics cupy-cuda12x pypylon nvidia-pyindex nvidia-tensorrt
+7. pip install --upgrade tensorrt==10.1.0 ultralytics torch torchvision torchaudio
+
+
+```
+
+
+
+
+## Check version
+
+```
+import tensorrt as trt
+print(trt.__version__)
+python3 -c "import torch; print(torch.version.cuda, torch.backends.cudnn.version())"
+import torch
+print(torch.cuda.is_available())       # Should return True
+print(torch.cuda.current_device())     # Should return 0
+print(torch.cuda.get_device_name(0))   # Should return RTX 4090
+
+```
 
